@@ -11,7 +11,7 @@ extension ContentView {
     
     /// Calls the /v1/verification_sessions endpoint to fetch the users verification data
     func processDeepLink(_ url: URL) {
-        let urlString = url.absoluteString.components(separatedBy: "event&event_name=")
+        let urlString = url.absoluteString.components(separatedBy: "://")
         if urlString.count > 1 {
             let parameters = urlString[1]
             if parameters.contains("success") {
