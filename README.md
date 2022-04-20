@@ -42,7 +42,7 @@ The demo app implements the following steps to validate a user:
 - createSession: Calls the createSession in the API class and triggers the webView with the verification page
 
 #### ContentView+Verification:
-- processDeepLink: this parses the soraid:// deep links and checks the status. If it’s a success the WebView redirects to soraid://event&event_name=success and the retrieveUser function is called
+- processDeepLink: this parses the soraid:// deep links and checks the status. If it’s a success the WebView redirects to soraid://success and the retrieveUser function is called
 - parseVerification: If the retrieveUser call is successful retrieveUser  will return a JSON of the users retrieved verified data. ContentView will then display this data
 
 ### WebView:
