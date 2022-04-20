@@ -1,33 +1,16 @@
+# Sora iOS Demo
 This app is a sample demo of the Sora ID verification flow for iOS
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/03e4657-Simulator_Screen_Shot_-_iPhone_X_15.2_-_2022-04-12_at_13.11.04.png",
-        "Simulator Screen Shot - iPhone X 15.2 - 2022-04-12 at 13.11.04.png",
-        1125,
-        2436,
-        "#e4e6ea"
-      ],
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
-##Quickstart
+
+![Sora Verification Flow](https://files.readme.io/03e4657-Simulator_Screen_Shot_-_iPhone_X_15.2_-_2022-04-12_at_13.11.04.png)
+
+## Quickstart
 To quickly test out the verification flow you can clone the app from:
-//TODO:
+https://github.com/sora-id/sora-ios-demo
 Open the app in Xcode and set navigate to the SoraiOSDemo--iOS--Info.plist file and set the API_KEY and BASE_URL fields. You can now run the app.
-[block:callout]
-{
-  "type": "warning",
-  "title": "Security Note",
-  "body": "Security Note: For a production system, do not embed this key in the client side application. Requests to Sora’s API should only be performed on your backend servers."
-}
-[/block]
-##Deep dive
+
+> ⚠️ **Security Note**: For a production system, do not embed this key in the client side application. Requests to Sora’s API should only be performed on your backend servers.!
+
+## Deep dive
 The demo app implements the following steps to validate a user:
  - Fetches a verification session from Sora
  - Launches a web view for the user to put in their information
@@ -38,27 +21,13 @@ The demo app implements the following steps to validate a user:
 
 ### API:
 - Handles calling the APIs for the verification flow. To call these APIs you will have to pass the API Key as a header
-[block:code]
-{
-  "codes": [
-    {
-      "code": "Authorization: Bearer <API_KEY>",
-      "language": "text"
-    }
-  ]
-}
-[/block]
+```json
+"Authorization: Bearer <API_KEY>"
+```
 - createSession: Fetches a token from the /v1/verification_sessions that can be used to embed a verification webView. To receive the deep link you will have to pass this as a payload:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "{\"is_webview\": \"true\"}",
-      "language": "json"
-    }
-  ]
-}
-[/block]
+```json
+"{\"is_webview\": \"true\"}"
+```
 - retrieveUser: After getting the token from createSession pass it as a query parameter to get the verified data.
 
 ### PList:
@@ -73,7 +42,7 @@ The demo app implements the following steps to validate a user:
 - createSession: Calls the createSession in the API class and triggers the webView with the verification page
 
 #### ContentView+Verification:
-- processDeepLink: this parses the soraid:// deep links and checks the status. If it’s a success the WebView redirects to soraid://success and the retrieveUser function is called
+- processDeepLink: this parses the soraid:// deep links and checks the status. If it’s a success the WebView redirects to soraid://event&event_name=success and the retrieveUser function is called
 - parseVerification: If the retrieveUser call is successful retrieveUser  will return a JSON of the users retrieved verified data. ContentView will then display this data
 
 ### WebView:
