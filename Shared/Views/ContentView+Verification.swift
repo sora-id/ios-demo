@@ -11,23 +11,18 @@ extension ContentView {
     
     /// Calls the /v1/verification_sessions endpoint to fetch the users verification data
     func processDeepLink(_ url: URL) {
-        let urlString = url.absoluteString.components(separatedBy: "://")
+        let urlString = url.absoluteString.components(separatedBy: "soraid://")
         if urlString.count > 1 {
             let parameters = urlString[1]
             if parameters.contains("success") {
                 isShowVerifyButton = false
                 isShowWebView = false
-                if let range = parameters.range(of: "verification_id=") {
-                    // In production this verificationID should only be stored on the backend
-                    // For demo purposes we'll use it to display the users verification data
-                    let verificationID = parameters[range.upperBound...]
-                    API.shared.retrieveUser(verificationID: String(verificationID)) { data, error in
-                        if let data = data {
-                            parseVerification(data: data)
-                        }
-                        else {
-                            showingAlert = true
-                        }
+                API.shared.retrieveUser(verificationID: String(verificationID)) { data, error in
+                    if let data = data {
+                        parseVerification(data: data)
+                    }
+                    else {
+                        showingAlert = true
                     }
                 }
             }

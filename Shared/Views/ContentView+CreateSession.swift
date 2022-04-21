@@ -22,6 +22,12 @@ extension ContentView {
                         return
                     }
                     
+                    guard let id = jsonResult?["id"] as? String else {
+                        showingAlert = true
+                        return
+                    }
+                    verificationID = id
+                    
                     let urlString = PList.shared.getBaseURL()
                     
                     if urlString == nil {

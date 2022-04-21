@@ -17,6 +17,7 @@ struct ContentView: View {
     @State var isShowVerifyButton = true
     @State var isVerified = false
     @State var verifiedStatus = ""
+    @State var verificationID = ""
     
     var body: some View {
         NavigationView {
