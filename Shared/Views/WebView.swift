@@ -14,7 +14,14 @@ struct WebView: UIViewRepresentable {
     @Binding var url: URL?
  
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
+        let webConfiguration = WKWebViewConfiguration()
+        // <-- REQUIRED for selfie verification -->
+        webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.mediaTypesRequiringUserActionForPlayback = []
+        // < -- >
+        let webView = WKWebView(frame: CGRect(), configuration: webConfiguration)
+        // If selfie verification isn't needed, webView can be initialized like this:
+        // let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
         return webView
     }
