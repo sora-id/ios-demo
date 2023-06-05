@@ -42,11 +42,17 @@ The demo app implements the following steps to validate a user:
 - createSession: Calls the createSession in the API class and triggers the webView with the verification page
 
 #### ContentView+Verification:
-- processDeepLink: this parses the soraid:// deep links and checks the status. If it’s a success the WebView redirects to soraid://success and the retrieveUser function is called
+- processDeepLink: this parses the soraid:// deep links and checks the status. If it’s a success the WebView redirects to soraid://success and the retrieveUser function is called. Ensure that `soraid` is included in your URL scheme configuration.
 - parseVerification: If the retrieveUser call is successful retrieveUser  will return a JSON of the users retrieved verified data. ContentView will then display this data
 
 ### WebView:
-- This UIViewRepresentable extendable embeds the verification flow and handling the soraid:// redirect
+- This UIViewRepresentable extendable embeds the verification flow and handling the soraid:// redirect. 
+- If you intend to use selfie verification in your integration, ensure that the following fields are set in your `WKWebView` configuration:
+```
+let webConfiguration = WKWebViewConfiguration()
+webConfiguration.allowsInlineMediaPlayback = true
+webConfiguration.mediaTypesRequiringUserActionForPlayback = []
+```
 
 ### Error:
 - Helper class to return an NSError
