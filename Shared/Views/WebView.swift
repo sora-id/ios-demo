@@ -8,6 +8,8 @@
 
 import SwiftUI
 import WebKit
+// Required for selfie verification support
+import iProov
 
 struct WebView: UIViewRepresentable {
  
@@ -18,8 +20,10 @@ struct WebView: UIViewRepresentable {
         // <-- REQUIRED for selfie verification -->
         webConfiguration.allowsInlineMediaPlayback = true
         webConfiguration.mediaTypesRequiringUserActionForPlayback = []
-        // < -- >
         let webView = WKWebView(frame: CGRect(), configuration: webConfiguration)
+        webView.installIProovNativeBridge()
+        // <-- -->
+        
         // If selfie verification isn't needed, webView can be initialized like this:
         // let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
