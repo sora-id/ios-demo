@@ -17,7 +17,7 @@
 			</array>
 		</dict>
 	</array>
-    <key>NSCameraUsageDescription</key>
-    <string>Enable camera access to scan documents</string>
+        <key>NSCameraUsageDescription</key>
+        <string>Enable camera access to scan documents</string>
 </dict>
 </plist>
