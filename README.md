@@ -6,7 +6,7 @@ This app is a sample demo of the Sora ID verification flow for iOS
 ## Quickstart
 To quickly test out the verification flow you can clone the app from:
 https://github.com/sora-id/sora-ios-demo
-Open the app in Xcode and set navigate to the SoraiOSDemo--iOS--Info.plist file and set the API_KEY and BASE_URL fields. You can now run the app.
+Open the app in Xcode and set navigate to the SoraiOSDemo--iOS--Info.plist file and set the API_KEY, PROJECT_ID, and BASE_URL fields. You can now run the app.
 
 > ⚠️ **Security Note**: For a production system, do not embed this key in the client side application. Requests to Sora’s API should only be performed on your backend servers.!
 
@@ -28,6 +28,7 @@ The demo app implements the following steps to validate a user:
 ```json
 "{\"is_webview\": \"true\"}"
 ```
+- You must also include the project ID in the payload.
 - retrieveUser: After getting the token from createSession pass it as a query parameter to get the verified data.
 
 ### PList:
@@ -198,5 +199,5 @@ webConfiguration.mediaTypesRequiringUserActionForPlayback = []
 
 ### Error:
 - Helper class to return an NSError
-- keyError - if the API_KEY field is missing from the .plist file
+- keyError - if the API_KEY or PROJECT_ID field is missing from the .plist file
 - invalidURLError - if the BASE_URL is missing or malformed
