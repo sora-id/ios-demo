@@ -11,6 +11,7 @@ import Foundation
 enum PListKey: String {
     case url = "BASE_URL"
     case apiKey = "API_KEY"
+    case projectId = "PROJECT_ID"
 }
 
 class PList {
@@ -31,6 +32,14 @@ class PList {
             return nil
         }
         return apiKey
+    }
+    
+    func getProjectID() -> String? {
+        guard let projectId = getPlistValue(key: PListKey.projectId) else {
+            print("Please ensure 'PROJECT_ID' is set in the plist")
+            return nil
+        }
+        return projectId
     }
 
     fileprivate func getPlistValue(key: PListKey) -> String? {

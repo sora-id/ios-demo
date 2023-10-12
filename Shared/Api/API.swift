@@ -17,7 +17,8 @@ class API {
     static let shared = API()
     
     func createSession(completionHandler: @escaping (Data?, Error?) -> Void) {
-        let payload = "{\"is_webview\": \"true\"}".data(using: .utf8)
+        let projectId = PList.shared.getProjectID()
+        let payload = "{\"is_webview\": \"true\", \"project_id\": \"\(projectId!)\"}".data(using: .utf8)
         request(payload: payload, method: Method.post, completionHandler: completionHandler)
     }
     
