@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>PROJECT_ID</key>
+	<string></string>
 	<key>API_KEY</key>
 	<string></string>
 	<key>BASE_URL</key>
@@ -15,7 +17,5 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Enable camera access to scan documents</string>
 </dict>
 </plist>
